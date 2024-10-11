@@ -23,17 +23,10 @@ export class UsersServiceService {
       } 
     })
   }
-
-
-
-
+  
   private get users(): User[] {
     return this.users$$.getValue();
   }
-  
-
-  
-
 }
 
 
