@@ -31,28 +31,25 @@ export class UsersListComponent implements OnInit  {
     this.store.dispatch(deleteUser({ user }));
   }
 
-
   ngOnInit() {
     
     this.store.dispatch(loadUser());
-    if(!this.localStorageService.getItem('tdyToken')){
+    if(!this.localStorageService.getItem("tdyToken")){
       this.userService.loadUsers();
     } else {
-      this.userService.users$$.next(this.localStorageService.getItem('tdyToken'))
+      this.userService.users$$.next(this.localStorageService.getItem("tdyToken"))
     }
   }
 
   openDialog(user?: User): void {
-
-    
     let isEdit: boolean = true;
     if (user) {
       isEdit = true;
     }
     
     const dialogRef = this.dialog.open<AddDialogComponent, {isEdit: boolean, user?: User}>(AddDialogComponent, {
-      width: '500px',
-      height: '500px',
+      width: "500px",
+      height: "500px",
       data: { 
         isEdit: true,
         user: user},
@@ -76,19 +73,13 @@ export class UsersListComponent implements OnInit  {
       height: '500px',
     })
     
-
     this.dialogRef.afterClosed().subscribe(
       (res)=> {
         if(res) {
           console.log(newUser)
           this.store.dispatch(editUser({ user: res }))
-          // const editUserData = { ...newUser, ...res };
-          // this.store.dispatch(editUser({ user:  editUserData }));
         }
        } 
     )
   }
 }
-
-
-

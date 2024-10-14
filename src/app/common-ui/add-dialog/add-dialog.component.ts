@@ -24,9 +24,9 @@ interface AddEditDialogData {
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
-        ],
-  templateUrl: './add-dialog.component.html',
-  styleUrls: ['./add-dialog.component.scss']
+  ],
+  templateUrl: "./add-dialog.component.html",
+  styleUrls: ["./add-dialog.component.scss"]
 })
 export class AddDialogComponent {
   formB = inject(FormBuilder);
@@ -49,4 +49,3 @@ export class AddDialogComponent {
     }
   }
 }
-

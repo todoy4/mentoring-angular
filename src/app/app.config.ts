@@ -14,26 +14,19 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideHttpClient(),
     provideAnimationsAsync(),
-
     provideStore({
       [USER_KEY]: userReducer,
     }),
-
     provideEffects(),
-    
-
     provideEffects(
       loadUserEffect
     ),
-    
     provideStoreDevtools({
       maxAge: 25,
-      logOnly: !isDevMode(), // Добавляем isDevMode в импорты выше
+      logOnly: !isDevMode(), 
       autoPause: true,
       trace: false,
       traceLimit: 75,
     })
   ]
 };
-
-

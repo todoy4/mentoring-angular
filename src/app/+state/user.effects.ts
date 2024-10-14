@@ -13,13 +13,13 @@ export const loadUserEffect = createEffect( ()=> {
     ofType(loadUser),
     switchMap( ()=> {
       return api.getUsers().pipe(
-        map(
-          res => { 
-              return loadUserSuccess({users: res})
-            }),
-            catchError( error => {
-              return of(loadUserFailed({error}))
-            })
+      map(
+        res => { 
+          return loadUserSuccess({users: res})
+          }),
+          catchError( error => {
+            return of(loadUserFailed({error}))
+        })
       )
     })
   )
@@ -56,5 +56,3 @@ export const editUser$ = createEffect( ()=> {
   )
 
 }, {functional: true, dispatch: false})
-
-   
