@@ -37,9 +37,9 @@ export const userReducer = createReducer (
         error,
     })),
 
-    on(deleteUser, (state, { user }) => ({
+    on(deleteUser, (state, { id }) => ({
         ...state,
-        users: state.users.filter(u => user.id !== u.id) 
+        users: state.users.filter(u => id !== u.id) 
     })),
     
     on(addUser, (state, { user }) => ({

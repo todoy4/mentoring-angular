@@ -9,12 +9,13 @@ import User from '../../interface/interface';
 import { LocalStorageService } from '../../service/local-storage.service';
 import { Store } from '@ngrx/store';
 import { addUser, deleteUser, editUser, loadUser } from '../../+state/user.action';
-import { selectUser } from '../../+state/user.selector';
+import { selectStatus, selectUser } from '../../+state/user.selector';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-users-list',
   standalone: true,
-  imports: [CommonModule, UserCardComponent, AsyncPipe, AddDialogComponent, MatButtonModule], 
+  imports: [CommonModule, UserCardComponent, AsyncPipe, AddDialogComponent, MatButtonModule, MatProgressSpinnerModule], 
   templateUrl: './users-list.component.html',
   styleUrl: './users-list.component.scss'
 })
@@ -26,9 +27,11 @@ export class UsersListComponent implements OnInit  {
   localStorageService = inject( LocalStorageService );
   public dialogRef!: MatDialogRef<AddDialogComponent>;
   public readonly users$ = this.store.select(selectUser);
+  public readonly status$ = this.store.select(selectStatus);
 
-  onDelete(user: User) {
-    this.store.dispatch(deleteUser({ user }));
+
+  onDelete(id: number) {
+    this.store.dispatch(deleteUser({ id }));
   }
 
   ngOnInit() {
